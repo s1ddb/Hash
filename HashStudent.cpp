@@ -1,5 +1,6 @@
 #include <iostream>
-#include <vector>
+#include <cstring>
+#include <iomanip>
 
 
 /* 
@@ -17,11 +18,15 @@ struct Student {//a struct object to hold data on every student
   char* lastname;
   int id; //ID of the student
   float gpa; //gpa of the student
+  Student* next;
+  Student* previous;
+
 
 };
 
-void addStudent(vector<Student*>*vvv);
-void printStudent(vector<Student*>*nowdefined);
+void addStudent(Student** list, Student* newStudent, int tablesize);
+void printStudent(Student** list, int tablesize);
+void checkCollisions(Student** list, int tablesize);
   
  
 
@@ -35,13 +40,17 @@ int main() {
     int DELinput = 0; //gets user input for what student ID has to be deleted
     int num = 0; //used in DELETE
       
-    vector<Student*>*list = new vector<Student*>();
+    //vector<Student*>*list = new vector<Student*>();
+	
+    Student** list = new Student*[100];
+    int tablesize = 100;
 
 
 
     while (IsRunning == true) { // while the program / code is running
-
-	  cout << "What would you like to do?" << endl;
+	
+	  
+	  cout << "This is the Hash Table for Student Lists. What would you like to do?" << endl;
 	  cout << endl;
 	  cout << "ADD" << endl << "PRINT" << endl << "DELETE" << endl << "QUIT" << endl; //gives user the options
 	  cout <<endl; //space
