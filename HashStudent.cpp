@@ -45,8 +45,6 @@ int main() {
     Student** list = new Student*[100];
     int tablesize = 100;
 
-
-
     while (IsRunning == true) { // while the program / code is running
 	
 	  
@@ -57,15 +55,69 @@ int main() {
 	  cout << "Please select from the above commands and enter:" << endl; //asks to enter
 
 	  cin.get(input, 10);
+	  cin.clear();
 	  cin.ignore();
-
 
 	  
 
 	  if (input[0] == 'A' && input[1] == 'D' && input[2] == 'D') { //if the first input matches 'ADD', run add student function
 
-	    addStudent(list);
-   
+		  
+		Student* newStudent = new Student();
+		newStudent->next = NULL;
+		newStudent->previous = NULL;
+		  
+		
+ 	 //first name
+  
+ 		char*first = new char[20]; //allocates memory space for a new char to the memory location of first
+
+  		cout << "Enter a first name:" << endl;
+		cin >> first;
+
+ 		 NewS->firstname = first; //sets the firstname to whatever is inside first after being read in by the cin in the previous line
+
+ 		 //last name
+
+  		char*last = new char[20]; //allocates memory space for a new char to the memory location of last
+  
+  		cout << "Enter the last name:" << endl;
+  		cin >> last; //gets last name
+  		NewStudent->lastname = last;
+				    
+
+ 		 // id
+		
+ 		 cout << "What's the ID of the student? :" << endl;				    
+		 cin >> NewStudent->id; //read in user input for id into the memory location of id inside of the struct student
+
+  		//gpa
+
+  		cout << "Enter the gpa: " << endl;
+  		cin >> NewStudent->gpa; //read in the user input for gpa into the memory location of gpa inside the struct student
+  		cin.ignore();
+
+  		//----
+  
+		ADD(list, newStudent, tablesize);
+		cout << "Student has been added." << endl;
+		  
+		  //collision balancing
+		  
+		if (checkCollision(list, tablesize)) {
+			
+			cout << "Collision detected in hash table, doubling table size" << endl;
+			Student** tmp = new Student*[tablesize];
+			for(int b = 0; b < tablesize; b++) {
+			
+				tmp[b] =
+				
+			}
+			
+		}
+  
+  
+
 	  }
 
 	  if (input[0] == 'P' && input[1] == 'R' && input[2] == 'I' && input[3] == 'N' && input[4] == 'T') {
@@ -124,42 +176,6 @@ int main() {
 void addStudent(vector<Student*>*vvv) {
 
 
-  Student*NewS= new Student(); //makes a memory location for all the variables inside of student
-
-  //first name
-  
-  char*first = new char[20]; //allocates memory space for a new char to the memory location of first
-
-  cout << "Enter a first name:" << endl;
-  cin >> first;
-
-  NewS->firstname = first; //sets the firstname to whatever is inside first after being read in by the cin in the previous line
-
-  //last name
-
-  char*last = new char[20]; //allocates memory space for a new char to the memory location of last
-  
-  cout << "Enter the last name:" << endl;
-  cin >> last; //gets last name
-  NewS->lastname = last;
-				    
-
-  // id
-
-  cout << "What's the ID of the student? :" << endl;				    
-  cin >> NewS->id; //read in user input for id into the memory location of id inside of the struct student
-
-  //gpa
-
-  cout << "Enter the gpa: " << endl;
-  cin >> NewS->gpa; //read in the user input for gpa into the memory location of gpa inside the struct student
-  cin.ignore();
-
-  //----
-  
-  vvv->push_back(NewS); //adds vector
-  
-  
 
 
 }
